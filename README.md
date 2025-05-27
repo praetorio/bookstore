@@ -92,10 +92,12 @@ bookstore/
 ├── .gitignore
 ├── configs/
 ├── src/
-│   ├── schemas/
-│   └── base_client.py
+│   ├── clients/
+│   └── schemas/
 ├── tests/
 │   ├── data/
+│   │   ├── authors/
+│   │   └── books/
 │   ├── authors/
 │   └── books/
 ├── utils/
@@ -105,8 +107,8 @@ bookstore/
 
 ## Extending & Maintenance
 
-* **Add endpoints**: Update `src/base_client.py`, `src/schemas/`, and add tests under `tests/`.
+* **Add endpoints**: Update `src/clients/`, `src/schemas/`, and add tests under `tests/`.
 * **Utilities**: Add reusable functions in `utils/`.
 * **Configuration**: Modify `configs/` for environment-specific settings.
-* **Test data**: Use `tests/data/` for JSON files containing test data.
+* **Test data**: Use `tests/data/` for JSON files containing test data
 * **Custom markers**: Add to `pyproject.toml`.

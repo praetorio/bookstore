@@ -3,7 +3,9 @@ import re
 
 import pytest
 
-from src.base_client import BookstoreClient
+from src.authors_client import AuthorsClient
+from src.base_client import BaseClient
+from src.books_client import BooksClient
 from utils.path_resolver import ROOT_DIR
 
 
@@ -13,8 +15,13 @@ def base_url() -> str:
 
 
 @pytest.fixture(scope="session")
-def client(base_url) -> BookstoreClient:
-    return BookstoreClient(base_url)
+def books_client(base_url) -> BooksClient:
+    return BooksClient(BaseClient(base_url))
+
+
+@pytest.fixture(scope="session")
+def authors_client(base_url) -> AuthorsClient:
+    return AuthorsClient(BaseClient(base_url))
 
 
 @pytest.hookimpl(tryfirst=True)

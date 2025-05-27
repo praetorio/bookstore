@@ -3,9 +3,9 @@ import re
 
 import pytest
 
-from src.authors_client import AuthorsClient
-from src.base_client import BaseClient
-from src.books_client import BooksClient
+from src.clients.authors_client import AuthorsClient
+from src.clients.base_client import BaseClient
+from src.clients.books_client import BooksClient
 from utils.path_resolver import ROOT_DIR
 
 

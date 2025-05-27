@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: set up python3.11
         uses: actions/setup-python@v4
         with:
@@ -24,7 +24,7 @@ jobs:
       - name: run tests
         run: poetry run pytest
       - name: upload test results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: test-results
           path: report.html

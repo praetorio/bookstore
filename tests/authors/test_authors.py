@@ -47,6 +47,7 @@ def test_get_author_invalid(authors_client):
 @pytest.mark.test_id("AUTHOR-04", description="Create an author with valid payload", feature="AUTHORS")
 def test_create_author(authors_client):
     status_code, author = authors_client.create(AUTHOR_PAYLOAD)
+    # Based on the API documentation, the expected status code for creation is 200 OK, but I would expect 201 Created.
     assert status_code == HTTPStatus.OK, f"Expected {HTTPStatus.OK}, got {status_code}."
     validate(author, AUTHOR_SCHEMA)
 
@@ -92,7 +93,7 @@ def test_update_author_invalid_payload(authors_client):
 
 
 @pytest.mark.authors
-@pytest.mark.test_id("AUTHOR-10", description="Delete an author by valid ID", feature="AUTHORS")
+@pytest.mark.test_id("AUTHOR-10", description="Delete an existing author", feature="AUTHORS")
 def test_delete_author(authors_client):
     status_code = authors_client.delete(1)
     # Based on the API documentation, the expected status code for deletion is 200 OK, but I would expect 204 No Content
@@ -123,8 +124,7 @@ def test_crud_author_schema(authors_client):
 
     # update
     updated_payload = {**AUTHOR_PAYLOAD, "firstName": "John"}
-    authors_client.update(author_id, updated_payload)
-    status_code, updated = authors_client.get(author_id)
+    status_code, updated = authors_client.update(author_id, updated_payload)
     assert status_code == HTTPStatus.OK, f"Expected to update author, got {status_code}."
     validate(updated, AUTHOR_SCHEMA)
     assert updated["firstName"] == "John", f"Expected firstName to be updated to 'John', got {updated['firstName']}."

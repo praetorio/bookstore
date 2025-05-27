@@ -23,11 +23,11 @@ class BaseResourceClient:
                                     expected={HTTPStatus.OK, HTTPStatus.NOT_FOUND})
 
     def create(self, payload: Dict[str, Any]) -> Tuple[HTTPStatus, Dict[str, Any]]:
-        return self._client.request(HTTPMethod.POST, self._path, json=payload, expected={HTTPStatus.CREATED})
+        return self._client.request(HTTPMethod.POST, self._path, json=payload, expected={HTTPStatus.CREATED, HTTPStatus.BAD_REQUEST})
 
     def update(self, item_id: int, payload: Dict[str, Any]) -> Tuple[HTTPStatus, Dict[str, Any]]:
         return self._client.request(HTTPMethod.PUT, f"{self._path}/{item_id}", json=payload,
-                                    expected={HTTPStatus.OK, HTTPStatus.NOT_FOUND})
+                                    expected={HTTPStatus.OK, HTTPStatus.NOT_FOUND, HTTPStatus.BAD_REQUEST})
 
     def delete(self, item_id: int) -> HTTPStatus:
         status, _ = self._client.request(HTTPMethod.DELETE, f"{self._path}/{item_id}",

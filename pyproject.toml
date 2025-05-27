@@ -19,8 +19,6 @@ pre-commit-hooks = "5.0.*"
 [tool.pytest.ini_options]
 addopts = ["--html=report.html", "--self-contained-html", "-vv"]
 testpaths = ["tests"]
-
-[tool.pytest.ini_options]
 markers = [
     "test_details: mark test with details",
     "books: mark test related to books",

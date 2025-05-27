@@ -15,7 +15,7 @@ def test_list_authors(authors_client):
 
 
 @pytest.mark.authors
-@pytest.mark.test_id("AUTHOR-02", description="Retrieve an author by valid ID", feature="AUTHORS")
+@pytest.mark.test_details("AUTHOR-02", description="Retrieve an author by valid ID", feature="AUTHORS")
 def test_get_author(authors_client):
     status_code, author = authors_client.get(1)
     assert status_code == HTTPStatus.OK, f"Expected {HTTPStatus.OK}, got {status_code}."
@@ -23,7 +23,7 @@ def test_get_author(authors_client):
 
 
 @pytest.mark.authors
-@pytest.mark.test_id("AUTHOR-03", description="Retrieve an author by invalid/non-existent ID", feature="AUTHORS")
+@pytest.mark.test_details("AUTHOR-03", description="Retrieve an author by invalid/non-existent ID", feature="AUTHORS")
 def test_get_author_invalid(authors_client):
     status_code, author = authors_client.get(1000)
     assert status_code == HTTPStatus.NOT_FOUND, f"Expected {HTTPStatus.NOT_FOUND}, got {status_code}."
@@ -31,7 +31,7 @@ def test_get_author_invalid(authors_client):
 
 
 @pytest.mark.authors
-@pytest.mark.test_id("AUTHOR-04", description="Create an author with valid payload", feature="AUTHORS")
+@pytest.mark.test_details("AUTHOR-04", description="Create an author with valid payload", feature="AUTHORS")
 def test_create_author(authors_client):
     status_code, author = authors_client.create(AUTHOR_PAYLOAD)
     # Based on the API documentation, the expected status code for creation is 200 OK, but I would expect 201 Created.
@@ -40,7 +40,7 @@ def test_create_author(authors_client):
 
 
 @pytest.mark.authors
-@pytest.mark.test_id("AUTHOR-05", description="Create an author with wrong data types", feature="AUTHORS")
+@pytest.mark.test_details("AUTHOR-05", description="Create an author with wrong data types", feature="AUTHORS")
 def test_create_author_invalid(authors_client):
     status_code, author = authors_client.create(INVALID_AUTHOR_PAYLOAD)
     assert status_code == HTTPStatus.BAD_REQUEST, f"Expected {HTTPStatus.BAD_REQUEST}, got {status_code}."
@@ -48,7 +48,7 @@ def test_create_author_invalid(authors_client):
 
 
 @pytest.mark.authors
-@pytest.mark.test_id("AUTHOR-06", description="Create an author missing a required field", feature="AUTHORS")
+@pytest.mark.test_details("AUTHOR-06", description="Create an author missing a required field", feature="AUTHORS")
 def test_create_author_invalid_missing_id(authors_client):
     status_code, author = authors_client.create(INVALID_AUTHOR_PAYLOAD)
     assert status_code == HTTPStatus.BAD_REQUEST, f"Expected {HTTPStatus.BAD_REQUEST}, got {status_code}."
@@ -56,7 +56,7 @@ def test_create_author_invalid_missing_id(authors_client):
 
 
 @pytest.mark.authors
-@pytest.mark.test_id("AUTHOR-07", description="Update an existing author with valid payload", feature="AUTHORS")
+@pytest.mark.test_details("AUTHOR-07", description="Update an existing author with valid payload", feature="AUTHORS")
 def test_update_author(authors_client):
     status_code, author = authors_client.update(1, AUTHOR_PAYLOAD)
     assert status_code == HTTPStatus.OK, f"Expected {HTTPStatus.OK}, got {status_code}."
@@ -64,7 +64,7 @@ def test_update_author(authors_client):
 
 
 @pytest.mark.authors
-@pytest.mark.test_id("AUTHOR-08", description="Update a non-existent author", feature="AUTHORS")
+@pytest.mark.test_details("AUTHOR-08", description="Update a non-existent author", feature="AUTHORS")
 def test_update_author_invalid(authors_client):
     status_code, author = authors_client.update(1000, AUTHOR_PAYLOAD)
     assert status_code == HTTPStatus.NOT_FOUND, f"Expected {HTTPStatus.NOT_FOUND}, got {status_code}."
@@ -72,7 +72,7 @@ def test_update_author_invalid(authors_client):
 
 
 @pytest.mark.authors
-@pytest.mark.test_id("AUTHOR-09", description="Update an author with malformed payload", feature="AUTHORS")
+@pytest.mark.test_details("AUTHOR-09", description="Update an author with malformed payload", feature="AUTHORS")
 def test_update_author_invalid_payload(authors_client):
     status_code, author = authors_client.update(1, INVALID_AUTHOR_PAYLOAD)
     assert status_code == HTTPStatus.BAD_REQUEST, f"Expected {HTTPStatus.BAD_REQUEST}, got {status_code}."
@@ -80,7 +80,7 @@ def test_update_author_invalid_payload(authors_client):
 
 
 @pytest.mark.authors
-@pytest.mark.test_id("AUTHOR-10", description="Delete an existing author", feature="AUTHORS")
+@pytest.mark.test_details("AUTHOR-10", description="Delete an existing author", feature="AUTHORS")
 def test_delete_author(authors_client):
     status_code = authors_client.delete(1)
     # Based on the API documentation, the expected status code for deletion is 200 OK, but I would expect 204 No Content
@@ -88,7 +88,7 @@ def test_delete_author(authors_client):
 
 
 @pytest.mark.authors
-@pytest.mark.test_id("AUTHOR-11", description="Delete a non-existent author", feature="AUTHORS")
+@pytest.mark.test_details("AUTHOR-11", description="Delete a non-existent author", feature="AUTHORS")
 def test_delete_author_invalid(authors_client):
     status_code = authors_client.delete(1000)
     # Based on the API documentation, the expected status code for deletion is 200 OK, but I would expect 204 No Content
@@ -96,7 +96,7 @@ def test_delete_author_invalid(authors_client):
 
 
 @pytest.mark.authors
-@pytest.mark.test_id("AUTHOR-12", description="CRUD operations on author schema", feature="AUTHORS")
+@pytest.mark.test_details("AUTHOR-12", description="CRUD operations on author schema", feature="AUTHORS")
 def test_crud_author_schema(authors_client):
     # create
     status_code, created = authors_client.create(AUTHOR_PAYLOAD)

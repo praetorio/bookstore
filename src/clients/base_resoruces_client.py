@@ -2,7 +2,7 @@ from http import HTTPStatus, HTTPMethod
 from typing import Type, Dict, Any, Tuple, List
 
 from configs.bookstore_resource import BookstoreResource
-from src.base_client import BaseClient
+from src.clients.base_client import BaseClient
 
 
 class BaseResourceClient:

@@ -1,5 +1,5 @@
 from configs.bookstore_resource import BookstoreResource
-from src.base_resoruces_client import BaseResourceClient
+from src.clients.base_resoruces_client import BaseResourceClient
 
 
 class BooksClient(BaseResourceClient):

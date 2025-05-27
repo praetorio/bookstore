@@ -15,11 +15,6 @@ def base_url() -> str:
 
 
 @pytest.fixture(scope="session")
-def client(base_url) -> BaseClient:
-    return BaseClient(base_url)
-
-
-@pytest.fixture(scope="session")
 def books_client(base_url) -> BooksClient:
     return BooksClient(BaseClient(base_url))
 

@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "bookstore_api_tests"
+version = "0.1.0"
+description = "Online bookstore api testing"
+authors = ["milos.pivic"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.11.*"
+requests = "2.32.3"
+pytest = "8.3.5"
+pytest-html = "4.1.1"
+jsonschema = "4.24.0"
+
+[poetry.group.dev.dependencies]
+pre-commit = "4.2.*"
+pre-commit-hooks = "5.0.*"
+
+[tool.pytest.ini_options]
+addopts = ["--html=report.html", "--self-contained-html", "-vv"]
+testpaths = ["tests"]
+
+[tool.pytest.ini_options]
+markers = [
+    "test_details: mark test with details",
+    "books: mark test related to books",
+    "authors: mark test related to authors",
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

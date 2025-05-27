@@ -3,20 +3,7 @@ from http import HTTPStatus
 import pytest
 from jsonschema import validate
 from src.schemas import AUTHOR_SCHEMA, AUTHOR_LIST_SCHEMA, ERROR_SCHEMA
-
-AUTHOR_PAYLOAD = {
-    "id": 999,
-    "idBook": 1,
-    "firstName": "Jane",
-    "lastName": "Doe"
-}
-
-INVALID_AUTHOR_PAYLOAD = {
-    "id": 0,
-    "idBook": 1,
-    "firstName": 123,  # Invalid type
-    "lastName": "Doe"
-}
+from tests.data.author_test_data import AUTHOR_PAYLOAD, INVALID_AUTHOR_PAYLOAD
 
 
 @pytest.mark.authors

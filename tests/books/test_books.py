@@ -3,24 +3,8 @@ from http import HTTPStatus
 import pytest
 from jsonschema import validate
 from src.schemas import BOOK_SCHEMA, BOOK_LIST_SCHEMA, ERROR_SCHEMA
-
-BOOK_PAYLOAD = {
-    "id": 999,
-    "title": "Pytest JSON-Schema Demo",
-    "description": "Testing JSON schema validation",
-    "pageCount": 0,
-    "excerpt": "Once upon a test…",
-    "publishDate": "2025-05-27T00:00:00Z"
-}
-
-INVALID_BOOK_PAYLOAD = {
-    "id": 0,
-    "title": "Pytest JSON-Schema Demo",
-    "description": "Testing JSON schema validation",
-    "pageCount": "ZERO",  # Invalid type, should be integer
-    "excerpt": "Once upon a test…",
-    "publishDate": "2025-05-27T00:00:00Z"
-}
+from tests.books.parametrized_test_example import INVALID_BOOK_PAYLOAD
+from tests.data.book_test_data import BOOK_PAYLOAD
 
 
 @pytest.mark.books

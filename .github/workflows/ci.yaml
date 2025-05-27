@@ -1,0 +1,30 @@
+name: API Test Suite
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v3
+      - name: set up python3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: install poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "export PATH=\"$HOME/.local/bin:$PATH\"" >> $GITHUB_ENV
+      - name: install dependencies
+        run: poetry install --no-interaction --only main
+      - name: run tests
+        run: poetry run pytest
+      - name: upload test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: report.html
